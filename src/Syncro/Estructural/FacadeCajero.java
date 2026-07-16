@@ -107,6 +107,9 @@ public class FacadeCajero {
         if (destino == null) {
             return "\u2717 Cuenta destino no encontrada: " + cuentaDestino;
         }
+        if (cuentaOrigen.trim().equalsIgnoreCase(cuentaDestino.trim())) {
+            return "\u2717 Error: No se puede realizar una transferencia a la misma cuenta de origen.";
+        }
 
         if (this.db.isSeguroAntiFraude() && monto > 10000.0) {
             return "\u2717 Transacción rechazada por el Sistema Anti-Fraude: El monto supera el límite permitido ($10,000).";

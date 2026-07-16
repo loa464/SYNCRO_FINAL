@@ -63,27 +63,7 @@ extends JPanel {
         JLabel subtitulo = new JLabel("Registro de transacciones y eventos de seguridad");
         subtitulo.setFont(new Font("Inter", 2, 12));
         subtitulo.setForeground(Colores.TEXT_HINT);
-        
-        BtnCurvo btnLimpiar = new BtnCurvo("\ud83d\uddd1  Limpiar Logs", Colores.ERROR, new Color(220, 38, 38), Colores.TEXT_WHITE);
-        btnLimpiar.setPreferredSize(new Dimension(140, 32));
-        btnLimpiar.addActionListener(e -> {
-            int confirm = javax.swing.JOptionPane.showConfirmDialog(this, 
-                "¿Está seguro de que desea eliminar permanentemente todos los logs de auditoría, SMS e historial transaccional de MySQL?", 
-                "Confirmar Limpieza", javax.swing.JOptionPane.YES_NO_OPTION, javax.swing.JOptionPane.WARNING_MESSAGE);
-            if (confirm == javax.swing.JOptionPane.YES_OPTION) {
-                BaseDatos.getInstance().vaciarLogs();
-                Auditoria.getInstance().vaciarRegistros();
-                this.actualizarDatos();
-                javax.swing.JOptionPane.showMessageDialog(this, "✓ Historial y logs vaciados con éxito.", "Vaciado Completo", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-            }
-        });
-
-        JPanel panelDerecho = new JPanel(new FlowLayout(FlowLayout.RIGHT, 14, 0));
-        panelDerecho.setOpaque(false);
-        panelDerecho.add(subtitulo);
-        panelDerecho.add(btnLimpiar);
-
-        header.add((Component)panelDerecho, "East");
+        header.add((Component)subtitulo, "East");
         cardLog.add((Component)header, "North");
         this.panelLogs = new JPanel();
         this.panelLogs.setLayout(new BoxLayout(this.panelLogs, 1));
